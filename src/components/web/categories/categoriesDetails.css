@@ -1,0 +1,21 @@
+.main-cont {
+  min-height: 84.1vh;
+  max-height: fit-content;
+}
+
+.test {
+  box-sizing: border-box;
+  height: 350px !important;
+  padding: 10px !important;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.my-row {
+  padding: 50px !important;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+}

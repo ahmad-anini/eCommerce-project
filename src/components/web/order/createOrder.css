@@ -1,0 +1,44 @@
+.main-order {
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-priv {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-self: flex-start;
+}
+
+.product-priv .quantity {
+  color: white;
+  background-color: #212529e8;
+  width: 150px;
+  height: 35px;
+  border-radius: 5px;
+  font-size: 17px;
+  padding: 7px;
+  text-align: center;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.main-order .product-priv .card {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.main-order .product-priv .card .card-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-order h2 {
+  font-size: 40px;
+  font-weight: bold;
+}

@@ -1,0 +1,56 @@
+.profile-container {
+  height: 84.1vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 10px;
+}
+
+.profile-container aside {
+  display: flex;
+  flex-direction: column;
+  background-color: #2b3035;
+  gap: 35px;
+  padding: 40px 80px;
+  margin: 15px;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  border-radius: 17px;
+}
+
+.profile-container aside a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+}
+
+.profile-container section {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 80px;
+  margin: 15px;
+  gap: 45px;
+}
+
+.profile-container section img {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+}
+
+.profile-container section h2 {
+  text-align: center;
+  margin: 0;
+  font-size: 50px;
+  font-weight: bolder;
+}
+
+th {
+  text-align: center !important;
+  font-size: 20px;
+}
+td {
+  text-align: center !important;
+  font-size: 18px;
+}

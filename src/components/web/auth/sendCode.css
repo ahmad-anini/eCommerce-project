@@ -1,0 +1,14 @@
+.form-send-code {
+  width: 35%;
+  padding: 30px;
+  background-color: #212529e8;
+  color: whitesmoke;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: fit-content;
+  min-height: 40%;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  border-radius: 20px;
+}

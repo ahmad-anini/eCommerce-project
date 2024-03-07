@@ -1,0 +1,23 @@
+.navbar-nav .dropdown {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-nav .dropdown img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+nav {
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 10 !important;
+}
+
+.badge {
+  z-index: 1000000 !important;
+}
