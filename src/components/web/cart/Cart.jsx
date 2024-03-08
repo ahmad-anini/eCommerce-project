@@ -8,40 +8,11 @@ export default function Cart() {
   const {
     cart,
     isLoading,
-    removeItemContext,
+    removeItem,
     clearCartContext,
     increaseQuantityContext,
     decraseQuantityContext,
   } = useContext(cartContext);
-
-  const removeCart = async (productId) => {
-    const res = await removeItemContext(productId);
-    return res;
-  };
-
-  const clearCart = async () => {
-    const res = await clearCartContext();
-    if (res.message === "success") {
-      toast.success("cart cleared successfully", {
-        position: "top-right",
-        autoClose: 1500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
-    }
-  };
-
-  const increaseQuantity = async (productId) => {
-    const res = await increaseQuantityContext(productId);
-  };
-
-  const decraseQuantity = async (productId) => {
-    const res = await decraseQuantityContext(productId);
-  };
 
   if (isLoading) {
     <p>loading ...</p>;
@@ -76,7 +47,7 @@ export default function Cart() {
                         <span>Color:black</span>
                         <a
                           href="#"
-                          onClick={() => removeCart(product.details._id)}
+                          onClick={() => removeItem(product.details._id)}
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -98,7 +69,9 @@ export default function Cart() {
                     </div>
                     <div className="quantity">
                       <button
-                        onClick={() => decraseQuantity(product.details._id)}
+                        onClick={() =>
+                          decraseQuantityContext(product.details._id)
+                        }
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -118,7 +91,9 @@ export default function Cart() {
                       </button>
                       <span>{product.quantity}</span>
                       <button
-                        onClick={() => increaseQuantity(product.details._id)}
+                        onClick={() =>
+                          increaseQuantityContext(product.details._id)
+                        }
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -149,7 +124,7 @@ export default function Cart() {
                 {cart?.products.length > 0 && (
                   <button
                     className="btn btn-outline-dark clear-cart"
-                    onClick={clearCart}
+                    onClick={clearCartContext}
                   >
                     Clear Cart
                   </button>
