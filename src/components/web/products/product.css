@@ -5,7 +5,7 @@
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .imgs {
@@ -52,4 +52,81 @@ button {
 .sub-img {
   width: 100px;
   height: 120px;
+}
+
+.price-rev {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.feedback {
+  display: flexe;
+  flex-direction: column;
+  align-self: flex-start;
+  gap: 20px;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.feedback h2 {
+  text-align: left;
+  margin: 10px;
+  margin-bottom: 20px;
+}
+
+.review {
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  gap: 10px;
+}
+.head-rev {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+}
+
+.head-rev img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.head-rev h3 {
+  font-size: 25px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.body-rev {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 5px;
+}
+
+.stars {
+  margin-left: 20px;
+}
+
+.body-rev p {
+  margin-left: 20px;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.fa-star {
+  font-size: 20px;
+  margin: 0 3px;
 }

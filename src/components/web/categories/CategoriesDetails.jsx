@@ -19,7 +19,20 @@ export default function CategoriesDetails() {
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div
+        className="d-flex align-items-center justify-content-center"
+        style={{ width: "100%", height: "100vh" }}
+      >
+        <div
+          className="spinner-border"
+          style={{ width: "120px", height: "120px" }}
+          role="status"
+        >
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -38,10 +51,25 @@ export default function CategoriesDetails() {
                   src={product.mainImage.secure_url}
                   alt="Card image cap"
                 />
-                <div className="card-body">
+                <div className="card-body  my-card">
                   <h5 className="card-title">{product.name}</h5>
+                  <div className="stars">
+                    {Array.from(
+                      { length: Math.round(product.avgRating) },
+                      (_, index) => (
+                        <i
+                          key={index}
+                          className="fa-solid fa-star"
+                          style={{ color: "#FFD43B" }}
+                        />
+                      )
+                    )}
+                  </div>
                   <h4>{product.price}$</h4>
-                  <Link to={`/product/${product._id}`} className="btn btn-dark">
+                  <Link
+                    to={`/product/${product._id}`}
+                    className="btn btn-dark my-btn"
+                  >
                     Details
                   </Link>
                 </div>

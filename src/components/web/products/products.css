@@ -1,0 +1,8 @@
+.products-main {
+  min-height: 84.1vh;
+  max-height: fit-content;
+}
+
+.pagination {
+  justify-content: center;
+}

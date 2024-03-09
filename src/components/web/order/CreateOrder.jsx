@@ -1,4 +1,3 @@
-import React from "react";
 import Input from "../../pages/Input";
 import { useFormik } from "formik";
 import { installOrderSchema } from "../validation/auth.js";
@@ -9,7 +8,7 @@ import { UserContext } from "../context/User.jsx";
 import { toast } from "react-toastify";
 import "./createOrder.css";
 import { cartContext } from "../context/Cart.jsx";
-import { useQuery } from "@tanstack/react-query";
+import { queryClient } from "../../../main.jsx";
 
 export default function CreateOrder() {
   const { userToken } = useContext(UserContext);
@@ -20,31 +19,28 @@ export default function CreateOrder() {
   };
 
   const onSubmit = async (users) => {
-    try {
-      const { data } = await axios.post(
-        `${import.meta.env.VITE_API_URL}/order`,
-        users,
-        {
-          headers: {
-            Authorization: `Tariq__${userToken}`,
-          },
-        }
-      );
-      if (data.message === "success") {
-        console.log(data);
-        toast.success("Order Installed successfully", {
-          position: "top-right",
-          autoClose: 1500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+    const { data } = await axios.post(
+      `${import.meta.env.VITE_API_URL}/order`,
+      users,
+      {
+        headers: {
+          Authorization: `Tariq__${userToken}`,
+        },
       }
-    } catch (error) {
-      console.log(error);
+    );
+    if (data.message === "success") {
+      console.log(data);
+      toast.success("Order Installed successfully", {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      queryClient.invalidateQueries({ queryKey: ["order"] });
     }
   };
 
@@ -93,24 +89,14 @@ export default function CreateOrder() {
     />
   ));
 
-  const { getCartContext } = useContext(cartContext);
-
-  const getCart = async () => {
-    const res = await getCartContext();
-    return res;
-  };
-
-  const { data, isLoading } = useQuery({
-    queryKey: ["cart-order"],
-    queryFn: getCart,
-  });
+  const { cart } = useContext(cartContext);
 
   return (
     <>
       <div className="container main-order">
         <h2>Create Order</h2>
         <div className="product-priv">
-          {data?.products.map((product) => (
+          {cart?.products.map((product) => (
             <div
               key={product.productId}
               className="card"

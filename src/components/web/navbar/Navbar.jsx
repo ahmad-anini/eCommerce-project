@@ -4,10 +4,10 @@ import { UserContext } from "../context/User";
 import "./navbar.css";
 import { cartContext } from "../context/Cart";
 export default function Navbar() {
-  let { setUserToken, userToken, userData, setUserData } =
+  const { setUserToken, userToken, userData, setUserData } =
     useContext(UserContext);
 
-  let { count } = useContext(cartContext);
+  const { count } = useContext(cartContext);
 
   const navigate = useNavigate();
   const logout = () => {
@@ -19,7 +19,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className="navbar navbar-expand-lg bg-body-tertiary"
+      className="navbar navbar-expand-lg bg-body-tertiary sticky-top"
       data-bs-theme="dark"
     >
       <div className="container">

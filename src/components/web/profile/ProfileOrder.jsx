@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useContext, useEffect } from "react";
 import { UserContext } from "../context/User";
 import { useQuery } from "@tanstack/react-query";
+import { queryClient } from "../../../main";
 
 export default function ProfileOrder() {
   const { userToken } = useContext(UserContext);
@@ -15,18 +16,34 @@ export default function ProfileOrder() {
     return data;
   };
 
-  const { isLoading, data, refetch } = useQuery({
+  const { isLoading, data } = useQuery({
     queryKey: ["order"],
     queryFn: getOrder,
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <section>
+        <h2 className="h2-order">order</h2>
+
+        <div
+          className="d-flex align-items-center justify-content-center"
+          style={{ width: "100%", height: "100%" }}
+        >
+          <div
+            className="spinner-border"
+            style={{ width: "120px", height: "120px" }}
+            role="status"
+          >
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </section>
+    );
   }
 
   return (
     <>
-      <button onClick={refetch}>Refresh</button>
       <section>
         <h2 className="h2-order">order</h2>
         <table className="table table-striped p-3">

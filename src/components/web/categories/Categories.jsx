@@ -1,5 +1,4 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
@@ -10,7 +9,7 @@ import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import "./categories.css";
 import { Link } from "react-router-dom";
-import { cartContext } from "../context/Cart";
+
 export default function Categories() {
   const getCategories = async () => {
     const { data } = await axios.get(
@@ -25,24 +24,25 @@ export default function Categories() {
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div
+        className="d-flex align-items-center justify-content-center"
+        style={{ width: "100%", height: "100vh" }}
+      >
+        <div
+          className="spinner-border"
+          style={{ width: "120px", height: "120px" }}
+          role="status"
+        >
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
   }
 
   return (
     <>
       <div className=" main">
-        <div className="home">
-          <div className="home-text">
-            <h2>Welcome To Ahmad-Shop</h2>
-            <p>Discover the latest trends in fashion and shop your style!</p>
-          </div>
-          <div className="home-img">
-            <img
-              src={"../../../../public//undraw_web_shopping_re_owap.svg"}
-              alt=""
-            />
-          </div>
-        </div>
         <div className="categories container">
           <h3>Categories</h3>
           <Swiper
