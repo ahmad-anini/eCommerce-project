@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { cartContext } from "../context/Cart";
 import "./product.css";
+import Stars from "../../pages/Stars";
 export default function Product() {
   const { productId } = useParams();
   const { addToCartContext } = useContext(cartContext);
@@ -55,7 +56,7 @@ export default function Product() {
           <div className="price-rev">
             <h3> Price : {data.product.price}$</h3>
             <div className="stars">
-              {Array.from(
+              {/* {Array.from(
                 { length: Math.round(data.avgRating) },
                 (_, index) => (
                   <i
@@ -64,37 +65,43 @@ export default function Product() {
                     style={{ color: "#FFD43B" }}
                   />
                 )
-              )}
+              )} */}
+              <Stars starNum={Math.round(data.avgRating)} />
             </div>
           </div>
 
           <p>{data.product.description}</p>
-          <button
-            className="btn btn-dark"
-            onClick={() => addToCartContext(data.product._id)}
-          >
-            Add To Cart
-          </button>
+          <div className="btns">
+            <button
+              className="btn btn-dark"
+              onClick={() => addToCartContext(data.product._id)}
+            >
+              Add To Cart
+            </button>
+
+            <button className="btn btn-dark">
+              <Link to={`/create/review/${data.product._id}`}> Add Review</Link>
+            </button>
+          </div>
+
           <div className="feedback">
             <h2>Feedback</h2>
+            {console.log(data)}
             {data?.product.reviews.map((review) => (
               <div className="review" key={review._id}>
                 <div className="head-rev">
-                  <img src={"../../../../public/user_profile.png"} alt="" />
-                  <h3>User</h3>
+                  {review.createdBy ? (
+                    <img src={review.createdBy.image.secure_url} alt="" />
+                  ) : (
+                    <img src={"../../../../public/user_profile.png"} alt="" />
+                  )}
+                  <h3>
+                    {review.createdBy ? `${review.createdBy.userName}` : `User`}
+                  </h3>
                 </div>
                 <div className="body-rev">
                   <div className="stars">
-                    {Array.from(
-                      { length: Math.round(review.rating) },
-                      (_, index) => (
-                        <i
-                          key={index}
-                          className="fa-solid fa-star"
-                          style={{ color: "#FFD43B" }}
-                        />
-                      )
-                    )}
+                    <Stars starNum={Math.round(review.rating)} />
                   </div>
                   <p>{review.comment}</p>
                 </div>

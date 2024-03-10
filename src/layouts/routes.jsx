@@ -19,6 +19,7 @@ import ProfileContact from "../components/web/profile/ProfileContact.jsx";
 import ProfileOrder from "../components/web/profile/ProfileOrder.jsx";
 import CreateOrder from "../components/web/order/CreateOrder.jsx";
 import Products from "../components/web/products/Products.jsx";
+import CreateReview from "../components/web/review/CreateReview.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -67,6 +68,10 @@ export const router = createBrowserRouter([
         element: <Product />,
       },
       {
+        path: "create/review/:productId",
+        element: <CreateReview />,
+      },
+      {
         path: "products",
         element: <Products />,
       },
@@ -78,6 +83,7 @@ export const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+
       {
         path: "CreateOrder",
         element: <CreateOrder />,

@@ -49,3 +49,12 @@ export const installOrderSchema = yup.object({
     .max(15, "must be at most 15 characters"),
   phone: yup.number().integer().required("phone is required"),
 });
+
+export const createReviewSchema = yup.object({
+  comment: yup
+    .string()
+    .required("comment is required")
+    .min(3, "must be at least 1 character")
+    .max(15, "must be at most 15 characters"),
+  rating: yup.number().required("review is required"),
+});

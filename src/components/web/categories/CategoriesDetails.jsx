@@ -3,6 +3,7 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
 import "./categoriesDetails.css";
+import Stars from "../../pages/Stars";
 export default function CategoriesDetails() {
   const { categoryId } = useParams();
 
@@ -54,16 +55,7 @@ export default function CategoriesDetails() {
                 <div className="card-body  my-card">
                   <h5 className="card-title">{product.name}</h5>
                   <div className="stars">
-                    {Array.from(
-                      { length: Math.round(product.avgRating) },
-                      (_, index) => (
-                        <i
-                          key={index}
-                          className="fa-solid fa-star"
-                          style={{ color: "#FFD43B" }}
-                        />
-                      )
-                    )}
+                    <Stars starNum={Math.round(product.avgRating)} />
                   </div>
                   <h4>{product.price}$</h4>
                   <Link
