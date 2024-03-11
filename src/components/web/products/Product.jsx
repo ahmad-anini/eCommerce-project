@@ -3,11 +3,12 @@ import React, { useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
 import { cartContext } from "../context/Cart";
+import userImage from "../../../../public/user_profile.png";
 import "./product.css";
 import Stars from "../../pages/Stars";
 export default function Product() {
   const { productId } = useParams();
-  const { addToCartContext } = useContext(cartContext);
+  const { addToCart } = useContext(cartContext);
 
   const getProduct = async () => {
     const { data } = await axios.get(
@@ -56,16 +57,6 @@ export default function Product() {
           <div className="price-rev">
             <h3> Price : {data.product.price}$</h3>
             <div className="stars">
-              {/* {Array.from(
-                { length: Math.round(data.avgRating) },
-                (_, index) => (
-                  <i
-                    key={index}
-                    className="fa-solid fa-star"
-                    style={{ color: "#FFD43B" }}
-                  />
-                )
-              )} */}
               <Stars starNum={Math.round(data.avgRating)} />
             </div>
           </div>
@@ -74,7 +65,7 @@ export default function Product() {
           <div className="btns">
             <button
               className="btn btn-dark"
-              onClick={() => addToCartContext(data.product._id)}
+              onClick={() => addToCart(data.product._id)}
             >
               Add To Cart
             </button>
@@ -93,7 +84,7 @@ export default function Product() {
                   {review.createdBy ? (
                     <img src={review.createdBy.image.secure_url} alt="" />
                   ) : (
-                    <img src={"../../../../public/user_profile.png"} alt="" />
+                    <img src={userImage} alt="" />
                   )}
                   <h3>
                     {review.createdBy ? `${review.createdBy.userName}` : `User`}

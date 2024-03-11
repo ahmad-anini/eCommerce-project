@@ -2,17 +2,18 @@ import Input from "../../pages/Input";
 import { useFormik } from "formik";
 import { createReviewSchema } from "../validation/auth.js";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-
+import { useNavigate, useParams } from "react-router-dom";
 import "../login/login.css";
 import { useContext, useState } from "react";
 import { UserContext } from "../context/User.jsx";
 import { toast } from "react-toastify";
+import { QueryClient } from "@tanstack/react-query";
 export default function CreateReview() {
   const { productId } = useParams();
   const { userToken } = useContext(UserContext);
   const [errorMessage, setErrorMessage] = useState(null);
   const [filledStars, setFilledStars] = useState(0);
+  const navigate = useNavigate();
   const initialValues = {
     comment: "",
     rating: "",
@@ -30,7 +31,7 @@ export default function CreateReview() {
         }
       );
       if (data.message === "success") {
-        toast.success("successfully", {
+        toast.success(" Review Added successfully", {
           position: "top-right",
           autoClose: 1500,
           hideProgressBar: false,
@@ -40,6 +41,10 @@ export default function CreateReview() {
           progress: undefined,
           theme: "dark",
         });
+        QueryClient.invalidateQueries({
+          queryKey: ["product"],
+        });
+        navigate(`/product/${productId}`);
       }
     } catch (error) {
       setErrorMessage(error.response.data.message);

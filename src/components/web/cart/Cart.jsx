@@ -6,8 +6,8 @@ export default function Cart() {
   const {
     cart,
     isLoading,
-    mutateRemoveItem,
-    mutateClearCart,
+    removeItem,
+    clearCart,
     increaseQuantity,
     isPendingIncreaseQuantity,
     decraseQuantity,
@@ -47,7 +47,7 @@ export default function Cart() {
                         <span>Color:black</span>
                         <a
                           href="#"
-                          onClick={() => mutateRemoveItem(product.details._id)}
+                          onClick={() => removeItem(product.details._id)}
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -127,7 +127,7 @@ export default function Cart() {
                 {cart?.products.length > 0 && (
                   <button
                     className="btn btn-outline-dark clear-cart"
-                    onClick={mutateClearCart}
+                    onClick={clearCart}
                   >
                     Clear Cart
                   </button>
@@ -158,7 +158,13 @@ export default function Cart() {
                 <div className="summary-footer"></div>
                 <div className="summary-footer">
                   <label className="total">Total</label>
-                  <span>$100</span>
+                  <span>
+                    $
+                    {cart?.products.reduce(
+                      (acc, curr) => acc + curr.details.price * curr.quantity,
+                      0
+                    )}
+                  </span>
                 </div>
                 <div className="checkout">
                   <Link to={"/CreateOrder"}>Chekout</Link>

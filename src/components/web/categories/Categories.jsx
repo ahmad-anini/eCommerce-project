@@ -51,10 +51,10 @@ export default function Categories() {
             slidesPerView={4.5}
             navigation
             pagination={{ clickable: true }}
-            // loop={true}
-            // autoplay={{
-            //   delay: 3000,
-            // }}
+            loop={true}
+            autoplay={{
+              delay: 1500,
+            }}
           >
             {data?.categories.length
               ? data.categories.map((categorie) => (

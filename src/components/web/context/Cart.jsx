@@ -34,7 +34,7 @@ export function CartContextProvider({ children }) {
 
   // start removeItem functionality
 
-  const { mutateAsync: mutateRemoveItem } = useMutation({
+  const { mutateAsync: removeItem } = useMutation({
     mutationFn: async (productId) => {
       const response = await axios.patch(
         `${import.meta.env.VITE_API_URL}/cart/removeItem`,
@@ -48,14 +48,16 @@ export function CartContextProvider({ children }) {
       setCount(response.data.count);
     },
     onSuccess: () => {
-      toast.success("Item Removed From Cart", {
+      toast.success("The product has been removed to the cart successfully", {
         position: "top-right",
-        autoClose: 2000,
+        autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
       });
-
       queryClient.invalidateQueries({ queryKey: ["cart"] });
     },
   });
@@ -64,7 +66,7 @@ export function CartContextProvider({ children }) {
 
   // start addToCart functionality
 
-  const addToCartContext = async (productId) => {
+  const addToCart = async (productId) => {
     if (!token) {
       toast.error("Please login first", {
         position: "top-right",
@@ -84,7 +86,7 @@ export function CartContextProvider({ children }) {
       { productId },
       { headers: { Authorization: `Tariq__${token}` } }
     );
-    setCount((prevValue) => prevValue + 1);
+    setCount(data.count);
     if (data.message == "success") {
       toast.success("The product has been added to the cart successfully", {
         position: "top-right",
@@ -106,7 +108,7 @@ export function CartContextProvider({ children }) {
 
   // start clearCart functionality
 
-  const { mutateAsync: mutateClearCart } = useMutation({
+  const { mutateAsync: clearCart } = useMutation({
     mutationFn: async () => {
       const response = await axios.patch(
         `${import.meta.env.VITE_API_URL}/cart/clear`,
@@ -204,12 +206,11 @@ export function CartContextProvider({ children }) {
     <>
       <cartContext.Provider
         value={{
-          addToCartContext,
+          addToCart,
           cart: data,
           isLoading,
-          mutateRemoveItem,
-          mutateClearCart,
-          //count: data?.length || 0,
+          removeItem,
+          clearCart,
           count,
           setCount,
           increaseQuantity,
