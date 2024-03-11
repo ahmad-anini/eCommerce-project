@@ -6,8 +6,10 @@ import { cartContext } from "../context/Cart";
 import userImage from "../../../../public/user_profile.png";
 import "./product.css";
 import Stars from "../../pages/Stars";
+import { UserContext } from "../context/User";
 
 export default function Product() {
+  const { userToken } = useContext(UserContext);
   const { productId } = useParams();
   const { addToCart } = useContext(cartContext);
   const getProduct = async () => {
@@ -69,13 +71,14 @@ export default function Product() {
             >
               Add To Cart
             </button>
-
-            <Link
-              className="btn btn-dark"
-              to={`/create/review/${data.product._id}`}
-            >
-              Add Review
-            </Link>
+            {userToken && (
+              <Link
+                className="btn btn-dark"
+                to={`/create/review/${data.product._id}`}
+              >
+                Add Review
+              </Link>
+            )}
           </div>
 
           <div className="feedback">
