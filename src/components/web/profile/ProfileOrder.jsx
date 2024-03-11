@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { UserContext } from "../context/User";
 import { useQuery } from "@tanstack/react-query";
 

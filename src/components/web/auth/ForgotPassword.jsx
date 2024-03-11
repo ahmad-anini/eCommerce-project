@@ -1,15 +1,15 @@
 import Input from "../../pages/Input";
 import { useFormik } from "formik";
-import { forgotPasswordSchema, loginSchema } from "../validation/auth.js";
+import { forgotPasswordSchema } from "../validation/auth.js";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-import { useContext } from "react";
-import { UserContext } from "../context/User.jsx";
 import { toast } from "react-toastify";
+import { useState } from "react";
 
 export default function ForgotPassword() {
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState(null);
   const initialValues = {
     email: "",
     password: "",
@@ -36,7 +36,7 @@ export default function ForgotPassword() {
         navigate("/login");
       }
     } catch (error) {
-      console.log(error);
+      setErrorMessage(error.response.data.message);
     }
   };
 
@@ -100,6 +100,11 @@ export default function ForgotPassword() {
               >
                 Rest
               </button>
+            </div>
+            <div className="login-error">
+              {errorMessage && (
+                <small className="form-text text-danger">{errorMessage}</small>
+              )}
             </div>
           </form>
         </div>

@@ -29,7 +29,6 @@ export default function CreateOrder() {
       }
     );
     if (data.message === "success") {
-      console.log(data);
       toast.success("Order Installed successfully", {
         position: "top-right",
         autoClose: 1500,

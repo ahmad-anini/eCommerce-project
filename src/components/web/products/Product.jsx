@@ -1,12 +1,12 @@
 import axios from "axios";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
 import { cartContext } from "../context/Cart";
 import userImage from "../../../../public/user_profile.png";
 import "./product.css";
 import Stars from "../../pages/Stars";
-import { UserContext } from "../context/User";
+
 export default function Product() {
   const { productId } = useParams();
   const { addToCart } = useContext(cartContext);
@@ -80,7 +80,6 @@ export default function Product() {
 
           <div className="feedback">
             <h2>Feedback</h2>
-            {console.log(data)}
             {data?.product.reviews.map((review) => (
               <div className="review" key={review._id}>
                 <div className="head-rev">

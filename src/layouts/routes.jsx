@@ -20,6 +20,7 @@ import ProfileOrder from "../components/web/profile/ProfileOrder.jsx";
 import CreateOrder from "../components/web/order/CreateOrder.jsx";
 import Products from "../components/web/products/Products.jsx";
 import CreateReview from "../components/web/review/CreateReview.jsx";
+import NotFound from "../components/web/notFoundPage/NotFound.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -109,7 +110,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "*",
-        element: <h2>page not found</h2>,
+        element: <NotFound />,
       },
     ],
   },

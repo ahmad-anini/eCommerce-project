@@ -1,6 +1,4 @@
-import React from "react";
 import "@fortawesome/fontawesome-free/css/all.css";
-// import "@fortawesome/fontawesome-free/css/all.css";
 
 import "./footer.css";
 import { Link } from "react-router-dom";

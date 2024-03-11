@@ -1,11 +1,13 @@
-import React from "react";
 import Input from "../../pages/Input";
 import { useFormik } from "formik";
 import { registerSchema } from "../validation/auth.js";
 import axios from "axios";
 import "./register.css";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function Register() {
+  const [errorMessage, setErrorMessage] = useState(null);
   const initialValues = {
     userName: "",
     email: "",
@@ -14,17 +16,31 @@ export default function Register() {
   };
 
   const onSubmit = async (users) => {
-    const formData = new FormData();
-    formData.append("userName", users.userName);
-    formData.append("email", users.email);
-    formData.append("password", users.password);
-    formData.append("image", users.image);
-    const { data } = await axios.post(
-      `https://ecommerce-node4.vercel.app/auth/signup`,
-      formData
-    );
-    if (data.message === "success") {
-      formik.resetForm();
+    try {
+      const formData = new FormData();
+      formData.append("userName", users.userName);
+      formData.append("email", users.email);
+      formData.append("password", users.password);
+      formData.append("image", users.image);
+      const { data } = await axios.post(
+        `https://ecommerce-node4.vercel.app/auth/signup`,
+        formData
+      );
+      if (data.message === "success") {
+        formik.resetForm();
+        toast.success("Register successfully Please Check Your Email", {
+          position: "top-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      }
+    } catch (error) {
+      setErrorMessage(error.response.data.message);
     }
   };
   const formik = useFormik({
@@ -101,6 +117,11 @@ export default function Register() {
               >
                 Register
               </button>
+            </div>
+            <div className="login-error">
+              {errorMessage && (
+                <small className="form-text text-danger">{errorMessage}</small>
+              )}
             </div>
           </form>
         </div>

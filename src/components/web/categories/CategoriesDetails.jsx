@@ -1,5 +1,4 @@
 import axios from "axios";
-import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
 import "./categoriesDetails.css";

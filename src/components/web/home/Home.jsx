@@ -1,4 +1,3 @@
-import React from "react";
 import Categories from "../categories/Categories";
 import main_image from "../../../../public//undraw_web_shopping_re_owap.svg";
 import Typewriter from "typewriter-effect";
