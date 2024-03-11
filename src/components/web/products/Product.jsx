@@ -6,10 +6,10 @@ import { cartContext } from "../context/Cart";
 import userImage from "../../../../public/user_profile.png";
 import "./product.css";
 import Stars from "../../pages/Stars";
+import { UserContext } from "../context/User";
 export default function Product() {
   const { productId } = useParams();
   const { addToCart } = useContext(cartContext);
-
   const getProduct = async () => {
     const { data } = await axios.get(
       `${import.meta.env.VITE_API_URL}/products/${productId}`
@@ -70,9 +70,12 @@ export default function Product() {
               Add To Cart
             </button>
 
-            <button className="btn btn-dark">
-              <Link to={`/create/review/${data.product._id}`}> Add Review</Link>
-            </button>
+            <Link
+              className="btn btn-dark"
+              to={`/create/review/${data.product._id}`}
+            >
+              Add Review
+            </Link>
           </div>
 
           <div className="feedback">

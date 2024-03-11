@@ -1,5 +1,6 @@
 .profile-container {
-  height: 84.1vh;
+  min-height: 84.1vh;
+  max-height: fit-content;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;

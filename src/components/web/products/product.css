@@ -30,11 +30,6 @@
   gap: 20px;
 }
 
-button {
-  width: 30%;
-  align-self: center;
-}
-
 .mainImg {
   display: flex;
   justify-content: center;
