@@ -90,7 +90,7 @@ export default function Products() {
             <span aria-hidden="true">«</span>
           </button>
         </li>
-        {Array.from({ length: Math.ceil(data.total / 4) }, (_, index) => (
+        {Array.from({ length: Math.ceil(data?.total / 4) }, (_, index) => (
           <li className="page-item" key={index}>
             <button
               className={`page-link w-100 ${
@@ -107,7 +107,7 @@ export default function Products() {
             className="page-link w-100"
             aria-label="Next"
             onClick={handleNextPage}
-            disabled={data && data.total <= page * 4}
+            disabled={data && data?.total <= page * 4}
           >
             <span aria-hidden="true">»</span>
           </button>
