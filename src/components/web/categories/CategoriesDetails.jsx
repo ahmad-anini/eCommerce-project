@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
 import "./categoriesDetails.css";
 import Stars from "../../pages/Stars";
+import Loader from "../Loader/Loader";
 export default function CategoriesDetails() {
   const { categoryId } = useParams();
 
@@ -20,18 +21,7 @@ export default function CategoriesDetails() {
 
   if (isLoading) {
     return (
-      <div
-        className="d-flex align-items-center justify-content-center"
-        style={{ width: "100%", height: "100vh" }}
-      >
-        <div
-          className="spinner-border"
-          style={{ width: "120px", height: "120px" }}
-          role="status"
-        >
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </div>
+      <Loader/>
     );
   }
 

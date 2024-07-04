@@ -9,6 +9,7 @@ import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import "./categories.css";
 import { Link } from "react-router-dom";
+import Loader from "../Loader/Loader";
 
 export default function Categories() {
   const getCategories = async () => {
@@ -25,18 +26,7 @@ export default function Categories() {
 
   if (isLoading) {
     return (
-      <div
-        className="d-flex align-items-center justify-content-center"
-        style={{ width: "100%", height: "100vh" }}
-      >
-        <div
-          className="spinner-border"
-          style={{ width: "120px", height: "120px" }}
-          role="status"
-        >
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </div>
+      <Loader/>
     );
   }
 

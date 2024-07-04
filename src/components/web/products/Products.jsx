@@ -3,6 +3,7 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Loader from "../Loader/Loader";
 
 export default function Products() {
   const [page, setPage] = useState(1);
@@ -32,20 +33,7 @@ export default function Products() {
   }
 
   if (isLoading) {
-    return (
-      <div
-        className="d-flex align-items-center justify-content-center"
-        style={{ width: "100%", height: "100vh" }}
-      >
-        <div
-          className="spinner-border"
-          style={{ width: "120px", height: "120px" }}
-          role="status"
-        >
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </div>
-    );
+    return <Loader />;
   }
 
   return (

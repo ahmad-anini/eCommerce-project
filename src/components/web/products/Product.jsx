@@ -7,6 +7,7 @@ import userImage from "../../../../public/user_profile.png";
 import "./product.css";
 import Stars from "../../pages/Stars";
 import { UserContext } from "../context/User";
+import Loader from "../Loader/Loader";
 
 export default function Product() {
   const { userToken } = useContext(UserContext);
@@ -25,20 +26,7 @@ export default function Product() {
   });
 
   if (isLoading) {
-    return (
-      <div
-        className="d-flex align-items-center justify-content-center"
-        style={{ width: "100%", height: "100vh" }}
-      >
-        <div
-          className="spinner-border"
-          style={{ width: "120px", height: "120px" }}
-          role="status"
-        >
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </div>
-    );
+    return <Loader />;
   }
 
   return (

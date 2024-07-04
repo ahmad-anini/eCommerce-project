@@ -23,7 +23,7 @@ export default function Register() {
       formData.append("password", users.password);
       formData.append("image", users.image);
       const { data } = await axios.post(
-        `https://ecommerce-node4.vercel.app/auth/signup`,
+        `${import.meta.env.VITE_API_URL}/auth/signup`,
         formData
       );
       if (data.message === "success") {

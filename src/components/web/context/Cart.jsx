@@ -4,6 +4,7 @@ import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { queryClient } from "../../../main";
 import { UserContext } from "./User";
+import Loader from "../Loader/Loader";
 
 export const cartContext = createContext(null);
 
@@ -186,20 +187,7 @@ export function CartContextProvider({ children }) {
   //end decraseQuantity functionality
 
   if (isLoading) {
-    return (
-      <div
-        className="d-flex align-items-center justify-content-center"
-        style={{ width: "100%", height: "100vh" }}
-      >
-        <div
-          className="spinner-border"
-          style={{ width: "120px", height: "120px" }}
-          role="status"
-        >
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </div>
-    );
+    return <Loader />;
   }
 
   return (
