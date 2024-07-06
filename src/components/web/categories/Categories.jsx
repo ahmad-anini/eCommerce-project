@@ -46,7 +46,7 @@ export default function Categories() {
               delay: 1500,
             }}
           >
-            {data?.categories.length
+            {data?.categories?.length
               ? data.categories.map((categorie) => (
                   <SwiperSlide key={categorie._id}>
                     <Link to={`/products/categories/${categorie._id}`}>

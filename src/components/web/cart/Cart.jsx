@@ -124,7 +124,7 @@ export default function Cart() {
                 <p>cart is empty</p>
               )}
               <div className=" clear-cart">
-                {cart?.products.length > 0 && (
+                {cart?.products?.length > 0 && (
                   <button
                     className="btn btn-outline-dark clear-cart"
                     onClick={clearCart}

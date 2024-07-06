@@ -29,7 +29,7 @@ export default function CategoriesDetails() {
     <>
       <div className="container main-cont">
         <div className="row my-row">
-          {data.length ? (
+          {data?.length ? (
             data.map((product) => (
               <div
                 className="card col-md-4 gy-3 test"
