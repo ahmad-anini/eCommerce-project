@@ -24,4 +24,4 @@ To run the project locally, follow these steps:
 <br>
    
 ## Alternatively, you can access the project by clicking on this link:
-[Ahmad-Shop](https://ecommerce-project-6b60.onrender.com/)
+[Ahmad-Shop](https://ahmad-shop.netlify.app/)
